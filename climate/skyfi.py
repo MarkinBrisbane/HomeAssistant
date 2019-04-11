@@ -58,9 +58,9 @@ class SkyFiClimate(ClimateDevice):
         self._host = host
         self._password = password
         self._fan_list = ['', 'Low', 'Medium', 'High']
-        self._operation_list = [ 'Off', 'Auto', 'Heat', 'Cool', 'Dry' ]
-        self._operation_dict = { 0:'Off', 1:'Auto', 2:'Heat', 8:'Cool', 16:'Dry' }
-        self._operation_mode = { 'Off':0, 'Auto':1, 'Heat':2, 'Cool':8, 'Dry':16 }
+        self._operation_list = [ 'off', 'auto', 'heat', 'dry', 'cool', 'fan_only' ]
+        self._operation_dict = { 0:'off', 1:'auto', 2:'heat', 4:'dry', 8:'cool', 16:'fan_only' }
+        self._operation_mode = { 'off':0, 'auto':1, 'heat':2, 'dry':4, 'cool':8, 'fan_only':16 }
         self._current_temperature = 21.0
         self._target_temperature = 21.0
         self._current_fan_mode = self._fan_list[1]
@@ -160,7 +160,7 @@ class SkyFiClimate(ClimateDevice):
         else:
             pstate = 1
         fan = self._fan_list.index(self.current_fan_mode)
-        payload = "/set.cgi?pass={}&p={}&t={:.5f}&f={}".format(self._password, pstate, self._target_temperature, fan)
+        payload = "/set.cgi?pass={}&p={}&t={:.5f}&f={}&m={}".format(self._password, pstate, self._target_temperature, fan, mode)
         self.doQuery(payload)
 
     def doQuery(self, payload):
