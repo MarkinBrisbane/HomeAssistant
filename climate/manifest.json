@@ -1,0 +1,10 @@
+{
+  "domain": "skyfi",
+  "name": "Skyfi",
+  "config_flow": false,
+  "documentation": "https://community.home-assistant.io/t/integration-with-daikin-skyfi-app-air-conditioning/4916/121",
+  "requirements": [],
+  "dependencies": [],
+  "codeowners": [
+  ]
+}
